@@ -1,0 +1,15 @@
+{
+    "lead_time": 1.1533623574765752,
+    "no_of_previous_cancellations": 0.02321352306333236,
+    "no_of_previous_bookings_not_canceled": -2.1528170150990538,
+    "no_of_special_requests": -1.1598349988885974,
+    "avg_price_per_room": 0.5305407962347879,
+    "arrival_month_num": -0.11247638178730644,
+    "arrival_day_of_week": -0.03801676924762798,
+    "no_of_adults": -0.004254972622601719,
+    "no_of_children": -0.009208383597313935,
+    "market_segment_type_1": 2.272317560183712,
+    "market_segment_type_2": 1.191953860443339,
+    "market_segment_type_3": 1.5626690014841191,
+    "market_segment_type_4": -0.8978973318451935
+}
