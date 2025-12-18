@@ -64,9 +64,6 @@ preprocessor = ColumnTransformer([
     ("cat", cat_pipe, CAT_FEATURES)
 ])
 
-# =========================
-# 5. Model pipeline
-# =========================
 model = Pipeline([
     ("prep", preprocessor),
     ("clf", LogisticRegression(
@@ -78,9 +75,6 @@ model = Pipeline([
     ))
 ])
 
-# =========================
-# 6. Cross-validation
-# =========================
 cv_auc = cross_val_score(
     model,
     X_train,
@@ -91,14 +85,8 @@ cv_auc = cross_val_score(
 
 print(f"CV ROC AUC (v3): {cv_auc.mean():.3f} ± {cv_auc.std():.3f}")
 
-# =========================
-# 7. Train final model
-# =========================
 model.fit(X_train, y_train)
 
-# =========================
-# 8. Evaluation
-# =========================
 FINAL_THRESHOLD = 0.47
 
 y_proba = model.predict_proba(X_test)[:, 1]
@@ -115,9 +103,6 @@ print("Precision:", precision)
 print("Recall:", recall)
 print("ROC AUC:", roc_auc)
 
-# =========================
-# 9. Confusion matrix
-# =========================
 cm = confusion_matrix(y_test, y_pred)
 
 confusion = {
@@ -127,9 +112,6 @@ confusion = {
     "true_positive": int(cm[1, 1]),
 }
 
-# =========================
-# 10. Feature importance
-# =========================
 ohe = model.named_steps["prep"] \
            .named_transformers_["cat"] \
            .named_steps["encoder"]
@@ -143,9 +125,6 @@ feature_importance = dict(
     zip(feature_names, coefficients)
 )
 
-# =========================
-# 11. Save artifacts (v3)
-# =========================
 os.makedirs("model", exist_ok=True)
 
 joblib.dump(model, "model/hotel_model_streamlit2.pkl")

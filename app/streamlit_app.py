@@ -5,23 +5,14 @@ import json
 from pathlib import Path
 from texts2 import TEXTS
 
-# =====================
-# SESSION STATE
-# =====================
 if "prob" not in st.session_state:
     st.session_state.prob = None
 
-# =====================
-# PAGE CONFIG
-# =====================
 st.set_page_config(
     page_title="Hotel Booking Cancellation Prediction",
     layout="centered"
 )
 
-# =====================
-# CSS
-# =====================
 st.markdown("""
 <style>
 .badge {
@@ -45,9 +36,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# =====================
-# PATHS & MODEL
-# =====================
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 model = joblib.load(BASE_DIR / "model" / "hotel_model_streamlit2.pkl")
@@ -58,23 +47,15 @@ with open(BASE_DIR / "model" / "metrics2.json") as f:
 with open(BASE_DIR / "model" / "confusion_matrix2.json") as f:
     confusion = json.load(f)
 
-# =====================
-# SIDEBAR – LANGUAGE
-# =====================
+
 with st.sidebar:
     language = st.selectbox("Language / Język", ["Polski", "English"])
 
 lang = "pl" if language == "Polski" else "en"
 T = TEXTS[lang]
 
-# =====================
-# TABS
-# =====================
 tab_pred, tab_metrics = st.tabs([T["tab_pred"], T["tab_metrics"]])
 
-# ============================================================
-# TAB 1 – PREDICTION + BUSINESS VALUE
-# ============================================================
 with tab_pred:
 
     st.title(T["title"])
@@ -100,7 +81,6 @@ with tab_pred:
     )
     market_segment = T["segment_map"][segment_label]
 
-    # ---------- CALCULATE ----------
     if st.button(T["calc"]):
         input_df = pd.DataFrame([{
             "lead_time": lead_time,
@@ -133,7 +113,6 @@ with tab_pred:
 
         st.write(f"**{T['prob']}**: {prob:.2%}")
 
-        # ---------- KPI ----------
         st.markdown("### 📌 " + T["kpi_title"])
         c1, c2, c3 = st.columns(3)
 
@@ -153,7 +132,6 @@ with tab_pred:
             unsafe_allow_html=True
         )
 
-        # ---------- EXPLANATION ----------
         with st.expander("ℹ️ " + T["explanation"]):
             reasons = []
             if lead_time > 120: reasons.append(T["exp_lead_time"])
@@ -164,7 +142,6 @@ with tab_pred:
             for r in reasons:
                 st.write(r)
 
-        # ---------- BUSINESS IMPACT ----------
         st.markdown("### 💰 " + T["business_impact_title"])
 
         nights = st.number_input(
@@ -184,7 +161,6 @@ with tab_pred:
             unsafe_allow_html=True
         )
 
-        # ---------- BUSINESS RECOMMENDATION ----------
         st.markdown("### 🧠 " + T["business_recommendation_title"])
 
         risk_pct = prob * 100
@@ -200,9 +176,6 @@ with tab_pred:
         else:
             st.success(T["rec_safe"])
 
-# ============================================================
-# TAB 2 – MODEL PERFORMANCE
-# ============================================================
 with tab_metrics:
 
     st.title(T["metrics_title"])
@@ -233,17 +206,14 @@ with tab_metrics:
             fp=confusion["false_positive"]
         )
     )
-    # =====================
-    # BUSINESS VALUE – MODEL LEVEL
-    # =====================
     st.markdown("### 💼 " + T["business_assumptions_title"])
 
     st.markdown(f"- {T['business_assumption_1']}")
     st.markdown(f"- {T['business_assumption_2']}")
     st.markdown(f"- {T['business_assumption_3']}")
 
-    # Prosta estymacja – logiczna i czytelna
-    avg_booking_value = 3 * 120  # domyślna wartość referencyjna
+
+    avg_booking_value = 3 * 120
     reaction_rate = 0.5
     effective_recall = metrics["recall"]
 
