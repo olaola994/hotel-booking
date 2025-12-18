@@ -31,7 +31,7 @@ Hotel nie może reagować na wszystkie rezerwacje, dlatego potrzebuje:
 
 Model odpowiada na pytanie:
 
-> *Jakie jest prawdopodobieństwo, że dana rezerwacja zostanie anulowana?*
+> Jakie jest prawdopodobieństwo, że dana rezerwacja zostanie anulowana?
 
 Na tej podstawie hotel może:
 - wprowadzić zaliczkę,
