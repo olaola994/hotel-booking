@@ -1,8 +1,5 @@
 TEXTS = {
     "pl": {
-        # =====================
-        # BASIC UI
-        # =====================
         "language": "Język",
         "title": "Predykcja anulowania rezerwacji hotelowej",
         "description": (
@@ -31,9 +28,7 @@ TEXTS = {
         "low": "Niskie ryzyko anulowania",
         "prob": "Prawdopodobieństwo anulowania",
 
-        # =====================
-        # KPI
-        # =====================
+
         "kpi_title": "Kluczowe wskaźniki (KPI)",
         "kpi_risk": "Ryzyko anulowania",
         "kpi_season": "Sezonowość",
@@ -47,9 +42,6 @@ TEXTS = {
             "Czwartek", "Piątek", "Sobota", "Niedziela"
         ],
 
-        # =====================
-        # EXPLANATION
-        # =====================
         "explanation": "Dlaczego model tak ocenił to ryzyko?",
         "exp_lead_time": "📅 Długi czas do przyjazdu statystycznie zwiększa ryzyko anulowania.",
         "exp_prev_cancel": "🔁 Klient wcześniej anulował rezerwacje – to silny sygnał ryzyka.",
@@ -57,9 +49,7 @@ TEXTS = {
         "exp_season": "🌞 Wysoki sezon historycznie wiąże się z większą stabilnością rezerwacji.",
         "exp_neutral": "📊 Brak silnych czynników ryzyka – rezerwacja wygląda stabilnie.",
 
-        # =====================
-        # CONFUSION MATRIX
-        # =====================
+
         "metrics_title": "Skuteczność modelu – interpretacja biznesowa",
         "accuracy": "Accuracy (ogólna trafność)",
         "precision": "Precision (jakość alertów)",
@@ -79,9 +69,6 @@ TEXTS = {
             "co jest kosztem operacyjnym, ale pozwala chronić większość przychodów."
         ),
 
-        # =====================
-        # SEGMENT MAP
-        # =====================
         "segment_map": {
             "Online": "Online",
             "Offline": "Offline",
@@ -90,9 +77,6 @@ TEXTS = {
             "Bezpłatny": "Complementary",
         },
 
-        # =====================
-        # BUSINESS IMPACT – SINGLE BOOKING
-        # =====================
         "business_impact_title": "Wpływ biznesowy tej rezerwacji",
         "nights": "Liczba nocy pobytu",
         "expected_loss": "Oczekiwana strata finansowa",
@@ -124,9 +108,6 @@ TEXTS = {
             "Brak konieczności interwencji – rezerwacja stabilna."
         ),
 
-        # =====================
-        # BUSINESS VALUE – MODEL LEVEL
-        # =====================
         "business_value_title": "Wartość biznesowa modelu",
         "business_value_desc": (
             "Poniższe estymacje pokazują, jak model może realnie wpłynąć na wynik finansowy hotelu "
@@ -144,11 +125,19 @@ TEXTS = {
             "Wartości są estymacją opartą na danych historycznych i konserwatywnych założeniach. "
             "Rzeczywiste korzyści mogą być wyższe przy lepszej strategii retencji."
         ),
+        "months": [
+            "Styczeń", "Luty", "Marzec", "Kwiecień",
+            "Maj", "Czerwiec", "Lipiec", "Sierpień",
+            "Wrzesień", "Październik", "Listopad", "Grudzień"
+        ],
+        "segment_help": (
+            "Segment rynku określa źródło rezerwacji i typ klienta "
+            "(np. online, korporacyjny, lotniczy). "
+            "Różne segmenty historycznie wykazują różne zachowania anulowań, "
+            "dlatego model uwzględnia tę informację przy ocenie ryzyka."
+        ),
     },
 
-    # =====================
-    # ENGLISH VERSION
-    # =====================
     "en": {
         "language": "Language",
         "title": "Hotel Booking Cancellation Prediction",
@@ -272,6 +261,19 @@ TEXTS = {
         "business_value_note": (
             "Values are estimates based on historical data and conservative assumptions. "
             "Actual benefits may be higher with optimized retention strategies."
+        ),
+
+        "months": [
+            "January", "February", "March", "April",
+            "May", "June", "July", "August",
+            "September", "October", "November", "December"
+        ],
+
+        "segment_help": (
+            "Market segment describes the source and type of booking "
+            "(e.g. online, corporate, aviation). "
+            "Different segments historically show different cancellation behavior, "
+            "which helps the model assess risk more accurately."
         ),
     }
 }

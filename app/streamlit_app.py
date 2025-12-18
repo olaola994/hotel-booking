@@ -70,7 +70,8 @@ with tab_pred:
     prev_not_cancel = st.number_input(T["prev_not_cancel"], 0, 50, 0)
     requests = st.number_input(T["requests"], 0, 10, 0)
     price = st.number_input(T["price"], 0.0, 1000.0, 120.0)
-    month = st.selectbox(T["month"], list(range(1, 13)))
+    month_label = st.selectbox(T["month"], T["months"])
+    month = T["months"].index(month_label) + 1
 
     dow_label = st.selectbox(T["dow"], T["dow_labels"])
     dow = T["dow_labels"].index(dow_label)
@@ -80,6 +81,7 @@ with tab_pred:
         list(T["segment_map"].keys())
     )
     market_segment = T["segment_map"][segment_label]
+    st.caption(T["segment_help"])
 
     if st.button(T["calc"]):
         input_df = pd.DataFrame([{
