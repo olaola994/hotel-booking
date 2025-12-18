@@ -41,8 +41,7 @@ Na tej podstawie hotel może:
 
 
 ## Dane
-
-Dane pochodzą z historycznych rezerwacji hotelowych i zawierają m.in.:
+Dane pochodzą z publicznego zbioru danych (https://www.kaggle.com/datasets/gauravduttakiit/reservation-cancellation-prediction?select=test___dataset.csv) dotyczącego rezerwacji hotelowych (dataset historyczny, dane anonimowe) i zawierają m.in.:
 
 ### Zmienne numeryczne
 - `lead_time` – liczba dni do przyjazdu  
@@ -71,7 +70,7 @@ Model został zbudowany w postaci Pipeline, aby uniknąć wycieków danych i zap
 - zmienne kategoryczne: One-Hot Encoding
 
 ### 2. Model
-- **Logistic Regression**
+- Logistic Regression
 - `class_weight={0:1, 1:2}`  
   (większa waga dla anulowań – są kosztowniejsze biznesowo)
 
@@ -81,3 +80,47 @@ Model został zbudowany w postaci Pipeline, aby uniknąć wycieków danych i zap
 
 
 ## Metryki modelu (finalna wersja)
+
+- Accuracy: ~0.77  
+- Precision: ~0.59  
+- Recall: ~0.77  
+- ROC AUC: ~0.85  
+
+### Interpretacja biznesowa:
+- Recall – model wykrywa większość anulowań (ochrona przychodu),
+- Precision – część alertów jest fałszywa, co jest akceptowalne kosztowo,
+- ROC AUC – dobra zdolność rozróżniania ryzykownych i stabilnych rezerwacji.
+
+
+## Próg decyzyjny
+
+Zastosowano próg: 0.47
+
+Oznacza to, że:
+- model jest nastawiony na wykrywanie ryzyka, a nie tylko „pewne” przypadki,
+- strategia jest konserwatywna biznesowo.
+
+
+## Struktura projektu
+<pre>
+hotel-booking/
+│
+├── app/
+├── data/
+│   ├── processed/
+│   └── raw/
+├── eda/
+├── model/
+├── requirements.txt
+└── README.md
+</pre>
+
+Logika projektu jest rozdzielona:
+- app/ – serwowanie modelu w postaci aplikacji webowej,
+- data/ – przygotowanie i przetwarzanie danych,
+- eda/ – analiza eksploracyjna,
+- model/ – trening i ewaluacja modelu,
+
+## Uruchomienie aplikacji
+
+Aplikacja jest dostępna online pod danym linkiem, który należy wkleić do przeglądarki internetowej: https://hotel-bookinggit-nkylerkejgzuvdtbieyxsq.streamlit.app
