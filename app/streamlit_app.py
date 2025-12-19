@@ -99,7 +99,6 @@ with tab_pred:
 
         st.session_state.prob = model.predict_proba(input_df)[0][1]
 
-    # ---------- DISPLAY ----------
     if st.session_state.prob is not None:
 
         prob = st.session_state.prob
@@ -187,6 +186,7 @@ with tab_metrics:
     col1.metric(T["precision"], f"{metrics['precision']:.0%}")
     col2.metric(T["recall"], f"{metrics['recall']:.0%}")
     col2.metric(T["roc_auc"], f"{metrics['roc_auc']:.2f}")
+    col2.metric(T["F1-score"], f"{metrics['f1']:.2f}")
 
     st.markdown("### " + T["confusion_title"])
 

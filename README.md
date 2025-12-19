@@ -124,3 +124,42 @@ Logika projektu jest rozdzielona:
 ## Uruchomienie aplikacji
 
 Aplikacja jest dostępna online pod danym linkiem, który należy wkleić do przeglądarki internetowej: https://hotel-bookinggit-nkylerkejgzuvdtbieyxsq.streamlit.app
+
+
+## Przenośność aplikacji
+Aplikacja została zaprojektowana w sposób umożliwiający łatwe przenoszenie i uruchamianie w różnych środowiskach. Wszystkie wymagane zależności zostały jednoznacznie określone w pliku requirements.txt, co pozwala na odtworzenie środowiska uruchomieniowego na dowolnym systemie z zainstalowanym Pythonem.
+
+Kod źródłowy projektu wraz z pełną strukturą katalogów dostępny jest w publicznym repozytorium GitHub:
+
+https://github.com/olaola994/hotel-booking
+
+Repozytorium zawiera komplet plików niezbędnych do uruchomienia aplikacji, w tym kod aplikacji, model Machine Learning, dane oraz dokumentację projektu.
+
+## Experiment tracking z użyciem MLflow
+
+W projekcie zastosowano MLflow do śledzenia eksperymentów uczenia maszynowego (experiment tracking).
+
+MLflow umożliwia:
+- rejestrowanie parametrów modelu (np. class_weight, próg decyzyjny),
+- zapisywanie metryk jakości modelu (Accuracy, Precision, Recall, F1-score, ROC AUC),
+- porównywanie różnych wariantów modelu w sposób uporządkowany,
+- przechowywanie wytrenowanych modeli jako artefaktów.
+
+W ramach projektu przeprowadzono kilka eksperymentów:
+- baseline – model bazowy bez wag klas, z domyślnym progiem 0.5,
+- high_recall – model z większą wagą dla anulowań (class imbalance),
+- final_model – model końcowy z dobranym progiem decyzyjnym (0.47), zoptymalizowany pod kątem kompromisu między recall i precision.
+
+Każdy eksperyment jest zapisywany jako osobny run w MLflow, co pozwala jasno wykazać:
+- wpływ niezbalansowanych danych na metryki,
+- kompromis między wykrywalnością anulowań a liczbą fałszywych alarmów,
+- zasadność wyboru finalnego modelu na podstawie metryki Recall.
+
+MLflow uruchamiany jest lokalnie i nie wymaga zewnętrznych usług chmurowych.
+
+Uruchomienie MLflow
+
+<pre>
+python -m model.train2
+mlflow ui
+</pre>

@@ -55,6 +55,7 @@ TEXTS = {
         "precision": "Precision (jakość alertów)",
         "recall": "Recall (wykrywalność anulowań)",
         "roc_auc": "ROC AUC (zdolność rozróżniania ryzyka)",
+        "F1-score": "F1-score (kompromis precyzji i wykrywalności)",
 
         "confusion_title": "Macierz pomyłek – co to oznacza dla hotelu",
 
@@ -136,6 +137,10 @@ TEXTS = {
             "Różne segmenty historycznie wykazują różne zachowania anulowań, "
             "dlatego model uwzględnia tę informację przy ocenie ryzyka."
         ),
+
+
+
+
     },
 
     "en": {
@@ -192,6 +197,7 @@ TEXTS = {
         "precision": "Precision (alert quality)",
         "recall": "Recall (missed revenue protection)",
         "roc_auc": "ROC AUC (risk separation ability)",
+        "F1-score": "F1-score (balance between precision and recall)",
 
         "confusion_title": "Confusion matrix – business meaning",
 
@@ -274,6 +280,15 @@ TEXTS = {
             "(e.g. online, corporate, aviation). "
             "Different segments historically show different cancellation behavior, "
             "which helps the model assess risk more accurately."
+        ),
+        "f1": "F1-score (precision–recall balance)",
+
+        "f1_desc": (
+            "F1-score combines precision and recall, reflecting overall model quality "
+            "on imbalanced data. "
+            "A slightly lower F1-score is acceptable because the model is intentionally "
+            "optimized for higher recall to protect hotel revenue, "
+            "even at the cost of more false alerts."
         ),
     }
 }
