@@ -135,6 +135,17 @@ https://github.com/olaola994/hotel-booking
 
 Repozytorium zawiera komplet plików niezbędnych do uruchomienia aplikacji, w tym kod aplikacji, model Machine Learning, dane oraz dokumentację projektu.
 
+Aby uruchomic aplikację lokalnie na swoim kompuetrze należy:
+1. sklonować repozytorium 
+2. Otworzyc terminal w kompilatorze (np. PyCharm)
+2. Przejść do katalogu hotel-booking
+cd hotel-booking
+3. Uruchomić komenedy w terminalu 
+python -m venv .venv
+source .venv/bin/activate  # lub Windows activate
+python -m pip install -r requirements.lock.txt
+streamlit run app.py
+
 ## Experiment tracking z użyciem MLflow
 
 W projekcie zastosowano MLflow do śledzenia eksperymentów uczenia maszynowego (experiment tracking).
